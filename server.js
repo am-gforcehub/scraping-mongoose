@@ -13,12 +13,14 @@ var bodyParser = require("body-parser");
 // Require all models
 // var db = require("./models");
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 
 // Initialize Express
 var app = express();
 
 var router = express.Router();
+
+require("./config/routes")(router);
 
 // Configure middleware
 
