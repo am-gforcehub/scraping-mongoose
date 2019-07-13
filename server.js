@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(express.json());
 // Make public a static folder
 app.use(express.static(__dirname + "/public"));
+
 app.engine(
   "handlebars",
   expressHandlebars({
@@ -34,6 +35,7 @@ app.use(router);
 
 // Connect to the Mongo DB
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.connect(MONGODB_URI);
 
 mongoose.connect(db, function(error) {
   if (error) {
