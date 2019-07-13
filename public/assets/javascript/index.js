@@ -58,7 +58,7 @@ $(document).ready(function() {
         "</div>",
         "<div class='panel-body text-center'>",
         "<h4><a class='scrape-new'>Try Scraping New Articles</a></h4>",
-        "<h4>(a href='/saved'>Go to Saved Articles></a><h4>",
+        "<h4><a href='/saved'>Go to Saved Articles></a><h4>",
         "</div>",
         "</div>"
       ].join("")
@@ -66,29 +66,27 @@ $(document).ready(function() {
 
     articleContainer.append(emptyAlert);
   }
-function handleArticleSave {
-    var articleToSave = $(this).parents(".panel").data();
+  function handleArticleSave() {
+    var articleToSave = $(this)
+      .parents(".panel")
+      .data();
     articleToSave.saved = true;
 
-    $.ajax ({
-        mathod: "PATCH",
-        url: "/api/headlines",
-        data: articleToSave
-    })
-    .then(function(data) {
-        if(data.ok) {
-            initPage();
-         }
+    $.ajax({
+      mathod: "PATCH",
+      url: "/api/headlines",
+      data: articleToSave
+    }).then(function(data) {
+      if (data.ok) {
+        initPage();
+      }
     });
-}
+  }
 
-function handleArticleScrape() {
-$.get("/api/fetch")
-.then(function(data) {
-    initPage();
-    bootbox.alert("<h3 class='text-center m-top-80'>");
-});
-
-}
-
+  function handleArticleScrape() {
+    $.get("/api/fetch").then(function(data) {
+      initPage();
+      bootbox.alert("<h3 class='text-center m-top-80'>");
+    });
+  }
 });
