@@ -4,22 +4,18 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 var scrape = function(cb) {
-  request("https://www.travelandleisure.com/travel-news", function(
-    err,
-    res,
-    body
-  ) {
+  request("https://www.nytimes.com", function(err, res, body) {
     var $ = cheerio.load(body);
 
     var articles = [];
 
-    $(".type-article").each(function(i, element) {
+    $(".theme-summary").each(function(i, element) {
       var head = $(this)
-        .children(".media-heading")
+        .children(".story-heading")
         .text()
         .trim();
       var sum = $(this)
-        .children(".article-info-extended")
+        .children(".summary")
         .text()
         .trim();
       if (head && sum) {

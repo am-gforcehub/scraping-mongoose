@@ -34,7 +34,7 @@ module.exports = function(router) {
     });
   });
 
-  router.delete("api/headlines/:id", function(req, res) {
+  router.delete("/api/headlines/:id", function(req, res) {
     var query = {};
     query._id = req.params.id;
     headlinesController.delete(query, function(err, data) {
@@ -42,13 +42,13 @@ module.exports = function(router) {
     });
   });
 
-  router.patch("api/headlines", function(req, res) {
+  router.patch("/api/headlines", function(req, res) {
     headlinesController.update(req.body, function(err, data) {
       res.json(data);
     });
   });
 
-  router.get("api/notes/:headline_id?", function(req, res) {
+  router.get("/api/notes/:headline_id?", function(req, res) {
     var query = {};
     if (req.params.headline_id) {
       query._id = req.params.headline_id;
@@ -58,7 +58,7 @@ module.exports = function(router) {
     });
   });
 
-  router.delete("api/notes/:id", function(req, res) {
+  router.delete("/api/notes/:id", function(req, res) {
     var query = {};
     query._id = req.params.id;
     notesController.delete(query, function(err, data) {
