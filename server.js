@@ -34,16 +34,20 @@ app.set("view engine", "handlebars");
 app.use(router);
 
 // Connect to the Mongo DB
-var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/followernews";
+
 mongoose.connect(MONGODB_URI);
 
-mongoose.connect(db, function(error) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("mongoose connection is successful!");
-  }
-});
+// mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
+// mongoose.connect(db, function(error) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("mongoose connection is successful!");
+//   }
+// });
 
 // Start the server
 app.listen(PORT, function() {
